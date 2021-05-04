@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
 const puppeteer = require("puppeteer-core");
-  
+
 module.exports = async ({data, page, crawler}) => {
+
+
   const {url} = data;
   if (!await crawler.isHTML(url)) {
     await crawler.directFetchCapture(url);
@@ -10,123 +12,37 @@ module.exports = async ({data, page, crawler}) => {
 
   const gotoOpts = {
     waitUntil: crawler.params.waitUntil,
-    timeout: 100000000
+    timeout: 0
   };
   
   try {
     await page.goto(url, gotoOpts);
-    await page.goto('https://tableau.azdhs.gov/views/COVID-19Summary/Overview2?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Ftableau.azdhs.gov%2F&:embed_code_version=3&:tabs=no&:toolbar=no&:showAppBanner=false&:display_spinner=no&iframeSizedToWindow=true&:loadOrderID=0')
-    
-    
-    let frames = await page.frames()
-    const frame_1678 = frames.find(f => f.url() === 'https://tableau.azdhs.gov/views/COVID-19Summary/Overview2?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Ftableau.azdhs.gov%2F&:embed_code_version=3&:tabs=no&:toolbar=no&:showAppBanner=false&:display_spinner=no&iframeSizedToWindow=true&:loadOrderID=0')
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-ubertipContent > .tab-ubertipTooltip > span > div:nth-child(1) > span:nth-child(1)')
-    await frame_1678.click('.tab-ubertipContent > .tab-ubertipTooltip > span > div:nth-child(1) > span:nth-child(1)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('#tableau_base_widget_ParameterControl_15 > .ParameterControlBox > .PCContent > .tabComboBox > .tabComboBoxNameContainer')
-    await frame_1678.click('#tableau_base_widget_ParameterControl_15 > .ParameterControlBox > .PCContent > .tabComboBox > .tabComboBoxNameContainer')
-    
-    await frame_1678.waitForSelector('.tundra > #tab-ui-id-1619834128852 > .tabMenuContent > #tab-menuItem2 > .tabMenuItemNameArea')
-    await frame_1678.click('.tundra > #tab-ui-id-1619834128852 > .tabMenuContent > #tab-menuItem2 > .tabMenuItemNameArea')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
-    await frame_1678.waitForSelector('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    await frame_1678.click('.tab-clip > #view13531545538510163046_11974585255807820909 > .tvScrollContainer > .tvimagesContainer > .tabCanvas:nth-child(2)')
-    
   } catch (e) {
     console.log(`Load timeout for ${url}`, e);
   }
 
- };
+  try {
+    await page.goto(url, gotoOpts);
+    requestIndividualDashboards(1)
+    for (i = 3; i <6; i++) {  
+        await requestIndividualDashboards(i)
+    }
+    await page.close()
+  } 
+  catch (e) {
+    console.log(`Load timeout for ${url}`, e);
+  }
+
+ async function requestIndividualDashboards(i) {
+   console.log("request individual dashboard")
+   await page.waitForSelector('#navigator > div > .menu-icon > .slide-menu-open-box > .fas', {timeout:0})
+   await page.click('#navigator > div > .menu-icon > .slide-menu-open-box > .fas', {timeout:0})
+   console.log("side nav bar opened")
+   await page.waitForSelector(`#navigator > div > #sidebar-nav > .list-group-item:nth-child(${i}) > .capturedLink`, {timeout:0})
+   await page.click(`#navigator > div > #sidebar-nav > .list-group-item:nth-child(${i}) > .capturedLink`, {timeout:0})
+   console.log("clicked")
+   await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"], timeout:0 });
+   console.log("reloaded")
+ }
  
-
-
+ };
