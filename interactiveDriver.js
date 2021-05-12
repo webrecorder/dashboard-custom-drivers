@@ -1,12 +1,17 @@
 /* eslint-disable no-undef */
 const puppeteer = require("puppeteer-core");
- async function dashboard10(frames){
+async function dashboard10(frames){
   
 }
 
 module.exports = async ({data, page, crawler}) => {
   
-
+dashboards = {
+  '9': {'tabs': 1},
+  '10': {'tabs': 1},
+  '12': {'tabs': 2},
+  '14': {'tabs': 6}
+}
 
   const {url} = data;
   if (!await crawler.isHTML(url)) {
@@ -20,57 +25,73 @@ module.exports = async ({data, page, crawler}) => {
   };
 
   try {
-    await page.goto(url, {timeout:2147483647})
-    await requestIndividualDashboards(url, 12)
+    await page.goto(url, {timeout:2147483647});
+    await requestIndividualDashboards(1);
+
+    for (k = 3; k <= 16; k++){
+      await requestIndividualDashboards(k);
+    }
+    await requestIndividualDashboards(1);
+
+    for (k = 2; k <= 13; k++){
+      await requestIndividualDashboards(k);
+    }
   } 
   catch (e) {
     console.log(`Load timeout for ${url}`, e);
   }
 
- async function requestIndividualDashboards(url, i) {
-   console.log("request individual dashboard")
-   await page.waitForSelector('#navigator > div > .menu-icon > .slide-menu-open-box > .fas', {timeout:2147483647})
-   await page.click('#navigator > div > .menu-icon > .slide-menu-open-box > .fas', {timeout:2147483647})
-   console.log("side nav bar opened")
-   await page.waitForSelector(`#navigator > div > #sidebar-nav > .list-group-item:nth-child(${i}) > .capturedLink`, {timeout:2147483647})
-   await page.click(`#navigator > div > #sidebar-nav > .list-group-item:nth-child(${i}) > .capturedLink`, {timeout:2147483647})
-   console.log("clicked")
-   await page.reload({ waitUntil: ["networkidle0", "networkidle2", "domcontentloaded"], timeout:2147483647 });
-   console.log("reloaded")
-   let frames = await page.frames()
-   const frame_4966 = frames.find(f => f.url() === 'https://tableau.azdhs.gov/views/EMResourceBeds/ICUBedUsageAvailability?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Ftableau.azdhs.gov%2F&:embed_code_version=3&:tabs=yes&:toolbar=no&:showAppBanner=false&:display_spinner=no&iframeSizedToWindow=true&:loadOrderID=0')
-    await frame_4966.waitForSelector('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_1')
-    await frame_4966.click('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_1')
-    await crawler.sleep(2000)
+  
+  async function getTabs(frame, number_of_frames) {
+    for (i = 0; i <= number_of_frames; i++) { 
+      console.log("item clicked");
+      console.log(i);
+      await frame.waitForSelector(`.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_${i}`);
+      await frame.click(`.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_${i}`);
+      await crawler.sleep(4000);    
+    }
+  }
+  
+  async function requestIndividualDashboards(i) {
+    console.log(`begin processing dashboard ${i}`);
+    
+    await page.waitForSelector("#navigator > div > .menu-icon > .slide-menu-open-box > .fas", {timeout:2147483647});
+    await page.click("#navigator > div > .menu-icon > .slide-menu-open-box > .fas", {timeout:2147483647});
+    console.log("side nav bar opened");
 
-    await frame_4966.waitForSelector('#main-content > #dashboard-viewport > #dashboard-spacer #tabZoneId4')
-    await frame_4966.click('#main-content > #dashboard-viewport > #dashboard-spacer #tabZoneId4')
-    await crawler.sleep(2000)
+    await page.waitForSelector(`#navigator > div > #sidebar-nav > .list-group-item:nth-child(${i}) > .capturedLink`, {timeout:2147483647});
+    await page.click(`#navigator > div > #sidebar-nav > .list-group-item:nth-child(${i}) > .capturedLink`, {timeout:2147483647});
+    console.log("clicked");
 
-    await frame_4966.waitForSelector('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_2')
-    await frame_4966.click('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_2')
-    await crawler.sleep(2000)
-
-    await frame_4966.waitForSelector('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_1')
-    await frame_4966.click('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_1')
-    await crawler.sleep(2000)
-
-    await frame_4966.waitForSelector('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_0')
-    await frame_4966.click('.dijitTabContainerTop-tabs #tableauTabbedNavigation_tab_0')
-    await crawler.sleep(2000)
-
-
-   for (j = 0; j < frames.length; j++) {  
-      if (frames[j]._url.includes('tableau')){
-        console.log("tableau dashboard found")
-        await page.goto(frames[j]._url, {timeout:2147483647})
+    await page.reload({ waitUntil: ["networkidle0", "networkidle2", "domcontentloaded"], timeout:2147483647 });
+    console.log("reloaded");
+    
+    let frames = await page.frames();
+   
+    for (j = 0; j < frames.length; j++) {  
+      if (frames[j]._url.includes("tableau")){
+        
+        console.log("tableau dashboard found");
+        console.log(i.toString())
+        
+        const frame = frames.find(f => f.url() === frames[j]._url);
+        
+        if (i.toString() in dashboards){
+          console.log("custom config found")
+          if ('tabs' in dashboards[i]){
+            console.log(`getting #{dashboards[i]['tabs']} tabs from #{i}`)
+            await getTabs(frame, dashboards[i]['tabs']);
+          }
+        }
+        
+        await page.goto(frames[j]._url, {timeout:2147483647});
         await page.reload({ waitUntil: ["networkidle0", "networkidle2", "domcontentloaded"], timeout:2147483647 });
   
    
-        console.log("navigate back to main dashboard")  
-        await page.goto(url, {timeout:2147483647})
+        console.log("navigate back to main dashboard");  
+        await page.goto(url, {timeout:2147483647});
       }
     }
   }
-}
+};
 
