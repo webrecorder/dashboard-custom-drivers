@@ -1,8 +1,5 @@
 /* eslint-disable no-undef */
 const puppeteer = require("puppeteer-core");
-async function dashboard10(frames){
-  
-}
 
 module.exports = async ({data, page, crawler}) => {
   
@@ -10,7 +7,7 @@ dashboards = {
   '9': {'tabs': 1},
   '10': {'tabs': 1},
   '12': {'tabs': 2},
-  '14': {'tabs': 6}
+  '14': {'tabs': 5}
 }
 
   const {url} = data;
