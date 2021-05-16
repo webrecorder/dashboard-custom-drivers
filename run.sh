@@ -82,7 +82,8 @@ $RUN $PORTS $VOLUMES $IMAGE crawl $SCREENCAST $WACZ \
  --driver /driver/tx.js\
  --collection tx-$DATE\
  --behaviors ""\
- --limit 1
+ --scope 'https://arcg.is/'\
+ --limit 2
 fi
 
 
