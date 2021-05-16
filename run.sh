@@ -28,11 +28,16 @@ case $key in
 esac
 done
 
+# set date for archives
+DATE=$(date +%Y-%m-%d)
+
 # if set, run in singularity instead of docker
 if [ -n "$SING" ]; then
-  singularity pull docker://webrecorder/browsertrix-crawler:0.4.0-beta.0
-
   IMAGE=./browsertrix-crawler_0.4.0-beta.0.sif
+
+  if [[ ! -f $IMAGE ]]; then
+    singularity pull docker://webrecorder/browsertrix-crawler:0.4.0-beta.0
+  fi
 
   VOLUMES="--bind $PWD/driver:/driver"
   PORTS=""
@@ -54,7 +59,7 @@ if [ -n "$AZ" ]; then
 $RUN $PORTS $VOLUMES $IMAGE crawl $SCREENCAST $WACZ \
  --url http://www.azdhs.gov/covid19/data/index.php\
  --driver /driver/az.js\
- --collection az\
+ --collection az-$DATE\
  --behaviors ""\
  --exclude '(sidebar-nav|contentHead|search)'\
  --spaMode
@@ -65,7 +70,7 @@ if [ -n "$CA" ]; then
 $RUN $PORTS $VOLUMES $IMAGE crawl $SCREENCAST $WACZ \
  --url https://covid19.ca.gov/data-and-tools/\
  --driver /driver/ca.js\
- --collection ca\
+ --collection ca-$DATE\
  --behaviors ""\
  --scope 'https://public.tableau.com/(views/|(?:profile/ca.open.data#!/vizhome/COVID-19CasesDashboardv2_0/CaseStatistics))'\
  --allowHash
@@ -75,7 +80,7 @@ if [ -n "$TX" ]; then
 $RUN $PORTS $VOLUMES $IMAGE crawl $SCREENCAST $WACZ \
  --url https://txdshs.maps.arcgis.com/apps/dashboards/ed483ecd702b4298ab01e8b9cafc8b83\
  --driver /driver/tx.js\
- --collection tx\
+ --collection tx-$DATE\
  --behaviors ""\
  --limit 1
 fi

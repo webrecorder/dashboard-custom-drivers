@@ -78,7 +78,10 @@ async function tryMap(page, frame, crawler) {
   await page.click(".enter-fullscreen");
 
   for (let i = 0; i < 3; i++) {
-    const sel = await frame.waitForSelector(".esri-icon-plus");
+    let sel = await frame.$(".esri-icon-plus");
+    if (!sel) {
+      sel = await frame.$(".esri-widget--button");
+    }
     if (!sel) {
       continue;
     }
